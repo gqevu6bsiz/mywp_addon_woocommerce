@@ -18,6 +18,8 @@ final class MywpControllerModuleWooCommerce extends MywpControllerAbstractModule
 
   protected static function after_init() {
 
+    add_action( 'registered_post_type' , array( __CLASS__ , 'registered_post_type' ) );
+
     add_filter( 'mywp_shortcode' , array( __CLASS__ , 'mywp_shortcode' ) );
 
   }
@@ -45,6 +47,26 @@ final class MywpControllerModuleWooCommerce extends MywpControllerAbstractModule
     add_filter( 'mywp_setting_admin_sidebar_get_default_sidebar_items' , array( __CLASS__ , 'mywp_setting_admin_sidebar_get_default_sidebar_items' ) , 10 , 2 );
 
     add_filter( 'mywp_controller_admin_sidebar_get_sidebar_item_added_classes_found_current_item_ids' , array( __CLASS__ , 'mywp_controller_admin_sidebar_get_sidebar_item_added_classes_found_current_item_ids' ) , 10 , 5 );
+
+  }
+
+  public static function registered_post_type() {
+
+    global $wp_post_types;
+
+    if( ! MywpDeveloper::is_debug() ) {
+
+      return false;
+
+    }
+
+    if( empty( $wp_post_types['product_variation'] ) ) {
+
+      return false;
+
+    }
+
+    $wp_post_types['product_variation']->show_ui = 1;
 
   }
 

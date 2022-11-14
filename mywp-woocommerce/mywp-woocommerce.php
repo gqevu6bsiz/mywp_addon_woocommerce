@@ -3,13 +3,13 @@
 Plugin Name: My WP Add-on WooCommerce
 Plugin URI: https://mywpcustomize.com/add_ons/my-wp-add-on-woocommerce/
 Description: My WP Add-on WooCommerce is customize for WooCommerce on My WP.
-Version: 1.0
+Version: 1.1.0
 Author: gqevu6bsiz
 Author URI: http://gqevu6bsiz.chicappa.jp/
 Text Domain: mywp-woocommerce
 Domain Path: /languages
-My WP Test working: 1.14
-WooCommerce Test working: 4.6.2
+My WP Test working: 1.20
+WooCommerce Test working: 6.8.2
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -52,7 +52,7 @@ final class MywpWooCommerce {
   private static function define_constants() {
 
     define( 'MYWP_WOOCOMMERCE_NAME' , 'My WP Add-On WooCommerce' );
-    define( 'MYWP_WOOCOMMERCE_VERSION' , '1.0' );
+    define( 'MYWP_WOOCOMMERCE_VERSION' , '1.1.0' );
     define( 'MYWP_WOOCOMMERCE_PLUGIN_FILE' , __FILE__ );
     define( 'MYWP_WOOCOMMERCE_PLUGIN_BASENAME' , plugin_basename( MYWP_WOOCOMMERCE_PLUGIN_FILE ) );
     define( 'MYWP_WOOCOMMERCE_PLUGIN_DIRNAME' , dirname( MYWP_WOOCOMMERCE_PLUGIN_BASENAME ) );

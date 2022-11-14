@@ -1,6 +1,8 @@
 # MyWP Add-on WooCommerce
 My WP Add-on WooCommerce is customize and develop for WooCommerce on My WP.
 
+![My WP](https://img.shields.io/badge/My%20WP-Ver%201.20-green) ![WooCommerce](https://img.shields.io/badge/WooCommerce-Ver%206.8-green)
+
 You can find the documentation at
 [My WP Add-on WooCommerce](https://mywpcustomize.com/add_ons/my-wp-add-on-woocommerce/).
 

@@ -24,17 +24,32 @@ final class MywpDeveloperModuleDevWooCommerce extends MywpDeveloperAbstractModul
 
     $debug_renders[ self::$id . '_product' ] = array(
       'debug_type' => 'woocommerce',
-      'title' => __( 'Product' , 'mywp-woocommerce' ),
+      'title' => 'Product',
     );
 
     $debug_renders[ self::$id . '_order' ] = array(
       'debug_type' => 'woocommerce',
-      'title' => __( 'Order' , 'mywp-woocommerce' ),
+      'title' => 'Order',
+    );
+
+    $debug_renders[ self::$id . '_customer' ] = array(
+      'debug_type' => 'woocommerce',
+      'title' => 'Customer',
     );
 
     $debug_renders[ self::$id . '_cart' ] = array(
       'debug_type' => 'woocommerce',
-      'title' => __( 'Cart' , 'mywp-woocommerce' ),
+      'title' => 'Cart',
+    );
+
+    $debug_renders[ self::$id . '_checkout' ] = array(
+      'debug_type' => 'woocommerce',
+      'title' => 'Checkout',
+    );
+
+    $debug_renders[ self::$id . '_session' ] = array(
+      'debug_type' => 'woocommerce',
+      'title' => 'Session',
     );
 
     return $debug_renders;
@@ -43,7 +58,7 @@ final class MywpDeveloperModuleDevWooCommerce extends MywpDeveloperAbstractModul
 
   public static function mywp_wp_loaded() {
 
-    if( ! class_exists( 'WooCommerce' ) ) {
+    if( ! function_exists( 'WC' ) ) {
 
       return false;
 
@@ -58,6 +73,7 @@ final class MywpDeveloperModuleDevWooCommerce extends MywpDeveloperAbstractModul
   public static function mywp_request_admin() {
 
     add_action( 'load-post.php' , array( __CLASS__ , 'admin_load_post' ) );
+
     add_action( 'load-post-new.php' , array( __CLASS__ , 'admin_load_post' ) );
 
   }
@@ -74,15 +90,19 @@ final class MywpDeveloperModuleDevWooCommerce extends MywpDeveloperAbstractModul
 
       add_action( 'mywp_debug_render_' . self::$id . '_product' , array( __CLASS__ , 'mywp_debug_render_product' ) );
 
-    } elseif( is_cart() ) {
-
-      add_action( 'mywp_debug_render_' . self::$id . '_cart' , array( __CLASS__ , 'mywp_debug_render_cart' ) );
-
     } elseif( is_account_page() && is_wc_endpoint_url( 'view-order' ) ) {
 
       add_action( 'mywp_debug_render_' . self::$id . '_order' , array( __CLASS__ , 'mywp_debug_render_shop_order' ) );
 
     }
+
+    add_action( 'mywp_debug_render_' . self::$id . '_customer' , array( __CLASS__ , 'mywp_debug_render_customer' ) );
+
+    add_action( 'mywp_debug_render_' . self::$id . '_cart' , array( __CLASS__ , 'mywp_debug_render_cart' ) );
+
+    add_action( 'mywp_debug_render_' . self::$id . '_checkout' , array( __CLASS__ , 'mywp_debug_render_checkout' ) );
+
+    add_action( 'mywp_debug_render_' . self::$id . '_session' , array( __CLASS__ , 'mywp_debug_render_session' ) );
 
   }
 
@@ -130,7 +150,7 @@ final class MywpDeveloperModuleDevWooCommerce extends MywpDeveloperAbstractModul
 
     $wc_product = wc_get_product( $product_id );
 
-    if( empty( $wc_product ) ) {
+    if( empty( $wc_product ) or ! is_object( $wc_product ) ) {
 
       return false;
 
@@ -449,15 +469,15 @@ final class MywpDeveloperModuleDevWooCommerce extends MywpDeveloperAbstractModul
     global $wp;
     global $post;
 
-    if( ! is_object( $post ) or empty( $post->ID ) ) {
-
-      return false;
-
-    }
-
     $shop_order_id = false;
 
     if( is_admin() ) {
+
+      if( ! is_object( $post ) or empty( $post->ID ) ) {
+
+        return false;
+
+      }
 
       $shop_order_id = $post->ID;
 
@@ -487,7 +507,7 @@ final class MywpDeveloperModuleDevWooCommerce extends MywpDeveloperAbstractModul
 
     $wc_order = wc_get_order( $shop_order_id );
 
-    if( empty( $wc_order ) ) {
+    if( empty( $wc_order ) or ! is_object( $wc_order ) ) {
 
       return false;
 
@@ -935,9 +955,213 @@ final class MywpDeveloperModuleDevWooCommerce extends MywpDeveloperAbstractModul
 
   }
 
+  public static function mywp_debug_render_customer() {
+
+    if( ! is_object( WC()->customer ) ) {
+
+      return false;
+
+    }
+
+    $wc_customer = WC()->customer;
+
+    $debug_lists = array();
+
+    if( method_exists( $wc_customer , 'get_id' ) ) {
+
+        $debug_lists['$wc_customer->get_id()'] = $wc_customer->get_id();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_avatar_url' ) ) {
+
+        $debug_lists['$wc_customer->get_avatar_url()'] = $wc_customer->get_avatar_url();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_taxable_address' ) ) {
+
+        $debug_lists['$wc_customer->get_taxable_address()'] = $wc_customer->get_taxable_address();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_downloadable_products' ) ) {
+
+        $debug_lists['$wc_customer->get_downloadable_products()'] = $wc_customer->get_downloadable_products();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_is_vat_exempt' ) ) {
+
+        $debug_lists['$wc_customer->get_is_vat_exempt()'] = $wc_customer->get_is_vat_exempt();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_calculated_shipping' ) ) {
+
+        $debug_lists['$wc_customer->get_calculated_shipping()'] = $wc_customer->get_calculated_shipping();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_last_order' ) ) {
+
+        $debug_lists['$wc_customer->get_last_order()'] = $wc_customer->get_last_order();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_order_count' ) ) {
+
+        $debug_lists['$wc_customer->get_order_count()'] = $wc_customer->get_order_count();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_total_spent' ) ) {
+
+        $debug_lists['$wc_customer->get_total_spent()'] = $wc_customer->get_total_spent();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_username' ) ) {
+
+        $debug_lists['$wc_customer->get_username()'] = $wc_customer->get_username();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_email' ) ) {
+
+        $debug_lists['$wc_customer->get_email()'] = $wc_customer->get_email();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_first_name' ) ) {
+
+        $debug_lists['$wc_customer->get_first_name()'] = $wc_customer->get_first_name();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_last_name' ) ) {
+
+        $debug_lists['$wc_customer->get_last_name()'] = $wc_customer->get_last_name();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_display_name' ) ) {
+
+        $debug_lists['$wc_customer->get_display_name()'] = $wc_customer->get_display_name();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_role' ) ) {
+
+        $debug_lists['$wc_customer->get_role()'] = $wc_customer->get_role();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_date_created' ) ) {
+
+        $debug_lists['$wc_customer->get_date_created()'] = $wc_customer->get_date_created();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_date_modified' ) ) {
+
+        $debug_lists['$wc_customer->get_date_modified()'] = $wc_customer->get_date_modified();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_billing' ) ) {
+
+        $debug_lists['$wc_customer->get_billing()'] = $wc_customer->get_billing();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_shipping' ) ) {
+
+        $debug_lists['$wc_customer->get_shipping()'] = $wc_customer->get_shipping();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_is_paying_customer' ) ) {
+
+        $debug_lists['$wc_customer->get_is_paying_customer()'] = $wc_customer->get_is_paying_customer();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_data_store' ) ) {
+
+        $debug_lists['$wc_customer->get_data_store()'] = $wc_customer->get_data_store();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_data' ) ) {
+
+        $debug_lists['$wc_customer->get_data()'] = $wc_customer->get_data();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_data_keys' ) ) {
+
+        $debug_lists['$wc_customer->get_data_keys()'] = $wc_customer->get_data_keys();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_extra_data_keys' ) ) {
+
+        $debug_lists['$wc_customer->get_extra_data_keys()'] = $wc_customer->get_extra_data_keys();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_meta_data' ) ) {
+
+        $debug_lists['$wc_customer->get_meta_data()'] = $wc_customer->get_meta_data();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_object_read' ) ) {
+
+        $debug_lists['$wc_customer->get_object_read()'] = $wc_customer->get_object_read();
+
+    }
+
+    if( method_exists( $wc_customer , 'get_changes' ) ) {
+
+        $debug_lists['$wc_customer->get_changes()'] = $wc_customer->get_changes();
+
+    }
+
+    printf( '<p>%s</p>' , '$wc_customer = WC()->customer' );
+
+    echo '<table class="debug-table">';
+
+    foreach( $debug_lists as $key => $val ) {
+
+      echo '<tr>';
+
+      printf( '<th>%s</th>' , $key );
+
+      echo '<td>';
+
+      if( is_array( $val ) or is_object( $val ) ) {
+
+        printf( '<textarea readonly="readonly">%s</textarea>' , print_r( map_deep( $val , 'esc_html' ) , true ) );
+
+      } else {
+
+        echo $val;
+
+      }
+
+      echo '</td>';
+
+    }
+
+    echo '</table>';
+
+  }
+
   public static function mywp_debug_render_cart() {
 
-    if( ! function_exists( 'WC' ) or ! is_object( WC()->cart ) ) {
+    if( ! is_object( WC()->cart ) ) {
 
       return false;
 
@@ -1200,6 +1424,160 @@ final class MywpDeveloperModuleDevWooCommerce extends MywpDeveloperAbstractModul
     }
 
     printf( '<p>%s</p>' , '$wc_cart = WC()->cart' );
+
+    echo '<table class="debug-table">';
+
+    foreach( $debug_lists as $key => $val ) {
+
+      echo '<tr>';
+
+      printf( '<th>%s</th>' , $key );
+
+      echo '<td>';
+
+      if( is_array( $val ) or is_object( $val ) ) {
+
+        printf( '<textarea readonly="readonly">%s</textarea>' , print_r( map_deep( $val , 'esc_html' ) , true ) );
+
+      } else {
+
+        echo $val;
+
+      }
+
+      echo '</td>';
+
+    }
+
+    echo '</table>';
+
+  }
+
+  public static function mywp_debug_render_checkout() {
+
+    if( ! is_object( WC()->checkout ) ) {
+
+      return false;
+
+    }
+
+    $wc_checkout = WC()->checkout;
+
+    $debug_lists = array();
+
+    if( method_exists( $wc_checkout , 'get_checkout_fields' ) ) {
+
+        $debug_lists['$wc_checkout->get_checkout_fields()'] = $wc_checkout->get_checkout_fields();
+
+    }
+
+    printf( '<p>%s</p>' , '$wc_checkout = WC()->wc_checkout' );
+
+    echo '<table class="debug-table">';
+
+    foreach( $debug_lists as $key => $val ) {
+
+      echo '<tr>';
+
+      printf( '<th>%s</th>' , $key );
+
+      echo '<td>';
+
+      if( is_array( $val ) or is_object( $val ) ) {
+
+        printf( '<textarea readonly="readonly">%s</textarea>' , print_r( map_deep( $val , 'esc_html' ) , true ) );
+
+      } else {
+
+        echo $val;
+
+      }
+
+      echo '</td>';
+
+    }
+
+    echo '</table>';
+
+  }
+
+  public static function mywp_debug_render_session() {
+
+    if( ! is_object( WC()->session ) ) {
+
+      return false;
+
+    }
+
+    $wc_session_handler = WC()->session;
+
+    $debug_lists = array();
+
+    if( method_exists( $wc_session_handler , 'get_customer_id' ) ) {
+
+        $debug_lists['$wc_session_handler->get_customer_id()'] = $wc_session_handler->get_customer_id();
+
+    }
+
+    if( method_exists( $wc_session_handler , 'get_customer_unique_id' ) ) {
+
+        $debug_lists['$wc_session_handler->get_customer_unique_id()'] = $wc_session_handler->get_customer_unique_id();
+
+    }
+
+    if( method_exists( $wc_session_handler , 'get_session_cookie' ) ) {
+
+        $debug_lists['$wc_session_handler->get_session_cookie()'] = $wc_session_handler->get_session_cookie();
+
+    }
+
+    if( method_exists( $wc_session_handler , 'get_session_data' ) ) {
+
+        $debug_lists['$wc_session_handler->get_session_data()'] = $wc_session_handler->get_session_data();
+
+    }
+
+    printf( '<p>%s</p>' , '$wc_session_handler = WC()->session' );
+
+    echo '<table class="debug-table">';
+
+    foreach( $debug_lists as $key => $val ) {
+
+      echo '<tr>';
+
+      printf( '<th>%s</th>' , $key );
+
+      echo '<td>';
+
+      if( is_array( $val ) or is_object( $val ) ) {
+
+        printf( '<textarea readonly="readonly">%s</textarea>' , print_r( map_deep( $val , 'esc_html' ) , true ) );
+
+      } else {
+
+        echo $val;
+
+      }
+
+      echo '</td>';
+
+    }
+
+    echo '</table>';
+
+    $wc_session_data = $wc_session_handler->get_session_data();
+
+    $debug_lists = array();
+
+    if( ! empty( $wc_session_data ) ) {
+
+      foreach( $wc_session_data as $session_data_key => $session_data_val ) {
+
+        $debug_lists['WC()->session->get( "' . $session_data_key . '" )'] = WC()->session->get( $session_data_key );
+
+      }
+
+    }
 
     echo '<table class="debug-table">';
 
