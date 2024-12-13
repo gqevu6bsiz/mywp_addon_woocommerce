@@ -1,55 +1,316 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: My WP Add-on WooCommerce\n"
-"POT-Creation-Date: 2020-11-07 10:45+0900\n"
-"PO-Revision-Date: 2020-11-07 10:46+0900\n"
+"POT-Creation-Date: 2024-12-13 11:38+0900\n"
+"PO-Revision-Date: 2024-12-13 11:58+0900\n"
 "Last-Translator: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "Language-Team: gqevu6bsiz@gmail.com\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.1\n"
-"X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.4.4\n"
+"X-Poedit-Basepath: .\n"
 
-#: controller/modules/mywp.controller.module.updater.php:106
-#: controller/modules/mywp.controller.module.updater.php:143
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:89
+#, php-format
+msgid "%1$s is %2$s (HPOS), so %3$s(shop_order) of %4$s are not available."
+msgstr ""
+"%1$sは「%2$s (HPOS)」です。そのため%4$sの%3$s(shop_order) はカスタマイズ"
+"できません。"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:89
+msgid "Order data storage"
+msgstr "注文データストレージ"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:89
+msgid "High-performance order storage (recommended)"
+msgstr "高パフォーマンス注文ストレージ (推奨)"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:89
+#: setting/modules/mywp.setting.admin.cot-orders.php:375
+msgid "Order"
+msgstr "注文"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:89
+msgid "Posts"
+msgstr "投稿一覧"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:92
+#, php-format
+msgid "WC %s (HPOS) can be customized from here."
+msgstr "こちらの「WC %s (HPOS)」からカスタマイズできます。"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:92
+#: setting/modules/mywp.setting.admin.cot-orders.php:40
+msgid "Orders"
+msgstr "注文一覧"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:701
+msgid "Order Number"
+msgstr "注文番号"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:706
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:479
+msgid "Order Status"
+msgstr "注文ステータス"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:713
+#: setting/modules/mywp.setting.admin.cot-orders.php:382
+msgid "Date"
+msgstr "日付"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:718
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:269
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:270
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:408
+#: setting/modules/mywp.setting.admin.cot-orders.php:445
+msgid "Order key"
+msgstr "注文キー"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:723
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:413
+msgid "Customer User ID"
+msgstr "お客様ユーザーID"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:728
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:277
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:278
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:418
+#: setting/modules/mywp.setting.admin.cot-orders.php:455
+msgid "Payment method"
+msgstr "お支払方法"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:735
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:281
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:282
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:425
+#: setting/modules/mywp.setting.admin.cot-orders.php:460
+msgid "Billing email"
+msgstr "請求先メール"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:741
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:285
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:286
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:431
+#: setting/modules/mywp.setting.admin.cot-orders.php:465
+msgid "Billing Phone Number"
+msgstr "請求先電話番号"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:746
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:436
+msgid "Billing name"
+msgstr "請求先氏名"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:750
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:765
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:798
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:440
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:455
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:698
+msgid "First name"
+msgstr "名"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:751
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:766
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:803
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:441
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:456
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:703
+msgid "Last name"
+msgstr "姓"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:756
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:289
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:290
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:446
+#: setting/modules/mywp.setting.admin.cot-orders.php:470
+msgid "Shipping Phone Number"
+msgstr "配送先電話番号"
+
+#: controller/modules/mywp.controller.module.admin.cot-orders.php:761
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:451
+msgid "Shipping name"
+msgstr "配送先氏名"
+
+#: controller/modules/mywp.controller.module.admin.products.php:203
+#: controller/modules/mywp.controller.module.admin.products.php:474
+msgid "Taxable"
+msgstr "課税"
+
+#: controller/modules/mywp.controller.module.admin.products.php:207
+#: controller/modules/mywp.controller.module.admin.products.php:475
+msgid "Shipping only"
+msgstr "送料のみ"
+
+#: controller/modules/mywp.controller.module.admin.products.php:211
+#: controller/modules/mywp.controller.module.admin.products.php:476
+msgctxt "Tax status"
+msgid "None"
+msgstr "なし"
+
+#: controller/modules/mywp.controller.module.admin.products.php:314
+#: controller/modules/mywp.controller.module.admin.products.php:315
+#: controller/modules/mywp.controller.module.admin.products.php:463
+msgid "Product Type"
+msgstr "商品タイプ"
+
+#: controller/modules/mywp.controller.module.admin.products.php:318
+#: controller/modules/mywp.controller.module.admin.products.php:319
+#: controller/modules/mywp.controller.module.admin.products.php:470
+msgid "Tax status"
+msgstr "課税ステータス"
+
+#: controller/modules/mywp.controller.module.admin.products.php:322
+#: controller/modules/mywp.controller.module.admin.products.php:323
+#: controller/modules/mywp.controller.module.admin.products.php:481
+msgid "Tax class"
+msgstr "税区分"
+
+#: controller/modules/mywp.controller.module.admin.products.php:326
+#: controller/modules/mywp.controller.module.admin.products.php:327
+#: controller/modules/mywp.controller.module.admin.products.php:488
+msgid "Stock management"
+msgstr "在庫管理"
+
+#: controller/modules/mywp.controller.module.admin.products.php:330
+#: controller/modules/mywp.controller.module.admin.products.php:331
+#: controller/modules/mywp.controller.module.admin.products.php:498
+msgid "Allow backorders?"
+msgstr "お取り寄せを受け付けますか ?"
+
+#: controller/modules/mywp.controller.module.admin.products.php:334
+#: controller/modules/mywp.controller.module.admin.products.php:335
+#: controller/modules/mywp.controller.module.admin.products.php:505
+msgid "Sold individually"
+msgstr "個別販売"
+
+#: controller/modules/mywp.controller.module.admin.products.php:338
+#: controller/modules/mywp.controller.module.admin.products.php:339
+#: controller/modules/mywp.controller.module.admin.products.php:515
+msgid "Virtual"
+msgstr "バーチャル"
+
+#: controller/modules/mywp.controller.module.admin.products.php:342
+#: controller/modules/mywp.controller.module.admin.products.php:343
+#: controller/modules/mywp.controller.module.admin.products.php:525
+msgid "Downloadable"
+msgstr "ダウンロード可能"
+
+#: controller/modules/mywp.controller.module.admin.products.php:492
+#: controller/modules/mywp.controller.module.admin.products.php:509
+#: controller/modules/mywp.controller.module.admin.products.php:519
+#: controller/modules/mywp.controller.module.admin.products.php:529
+msgid "No"
+msgstr "いいえ"
+
+#: controller/modules/mywp.controller.module.admin.products.php:493
+#: controller/modules/mywp.controller.module.admin.products.php:510
+#: controller/modules/mywp.controller.module.admin.products.php:520
+#: controller/modules/mywp.controller.module.admin.products.php:530
+msgid "Yes"
+msgstr "はい"
+
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:273
+#: controller/modules/mywp.controller.module.admin.shop-orders.php:274
+#: setting/modules/mywp.setting.admin.cot-orders.php:450
+msgid "Customer User"
+msgstr "お客様"
+
+#: controller/modules/mywp.controller.module.admin.woocommerce.php:142
+msgctxt "Admin menu name"
+msgid "Orders"
+msgstr "注文一覧"
+
+#: controller/modules/mywp.controller.module.main.general.php:87
+msgid "Documents"
+msgstr "ドキュメント"
+
+#: controller/modules/mywp.controller.module.updater.php:120
+#: controller/modules/mywp.controller.module.updater.php:157
 msgid "Connection lost or the server is busy. Please try again later."
 msgstr ""
 "サーバに接続できませんでした。 時間をおいてもう一度お試しください。"
 
-#: controller/modules/mywp.controller.module.updater.php:137
-#: controller/modules/mywp.controller.module.updater.php:153
+#: controller/modules/mywp.controller.module.updater.php:151
+#: controller/modules/mywp.controller.module.updater.php:167
 msgid "An error has occurred. Please reload the page and try again."
 msgstr ""
-"予期しないエラーが発生しました。ページをリロードして、もう一度お試し"
-"ください。"
+"予期しないエラーが発生しました。ページをリロードして、もう一度お試しくだ"
+"さい。"
 
-#: controller/modules/mywp.controller.module.updater.php:189
+#: controller/modules/mywp.controller.module.updater.php:255
 msgid "Invalid remote Json data. Please try again."
-msgstr ""
-"リモートのJsonデータエラー。 約1時間後に、もう一度お試しください。"
+msgstr "リモートのJsonデータエラー。 約1時間後に、もう一度お試しください。"
 
-#: controller/modules/mywp.controller.module.updater.php:199
-msgid "Invalid results. Sorry maybe update format changed."
-msgstr "形式エラー。アップデートの形式が変更された可能性があります。"
+#: setting/modules/mywp.setting.admin.cot-orders.php:291
+#: setting/modules/mywp.setting.admin.cot-orders.php:476
+msgid "Other"
+msgstr "その他"
 
-#: developer/modules/mywp.developer.module.woocommerce.php:27
-msgid "Product"
-msgstr "商品"
+#: setting/modules/mywp.setting.admin.cot-orders.php:295
+msgid "Number of items per page:"
+msgstr "ページごとに表示する項目数:"
 
-#: developer/modules/mywp.developer.module.woocommerce.php:32
-msgid "Order"
-msgstr "注文"
+#: setting/modules/mywp.setting.admin.cot-orders.php:303
+msgid "Add order"
+msgstr "注文を追加"
 
-#: developer/modules/mywp.developer.module.woocommerce.php:37
-msgid "Cart"
-msgstr "カート"
+#: setting/modules/mywp.setting.admin.cot-orders.php:307
+#: setting/modules/mywp.setting.admin.cot-orders.php:316
+#: setting/modules/mywp.setting.admin.cot-orders.php:325
+#: setting/modules/mywp.setting.admin.cot-orders.php:335
+msgid "Hide"
+msgstr "隠す"
 
-#. Plugin Name of the plugin/theme
-msgid "My WP Add-on WooCommerce"
-msgstr ""
+#: setting/modules/mywp.setting.admin.cot-orders.php:312
+msgid "Search orders"
+msgstr "注文を検索"
+
+#: setting/modules/mywp.setting.admin.cot-orders.php:321
+msgid "Bulk actions"
+msgstr "一括操作"
+
+#: setting/modules/mywp.setting.admin.cot-orders.php:331
+msgid "Custom search filter"
+msgstr "カスタム検索フィルター"
+
+#: setting/modules/mywp.setting.admin.cot-orders.php:336
+msgid "Show"
+msgstr "表示"
+
+#: setting/modules/mywp.setting.admin.cot-orders.php:388
+msgid "Status"
+msgstr "ステータス"
+
+#: setting/modules/mywp.setting.admin.cot-orders.php:394
+msgid "Billing"
+msgstr "請求"
+
+#: setting/modules/mywp.setting.admin.cot-orders.php:400
+msgid "Ship to"
+msgstr "配送"
+
+#: setting/modules/mywp.setting.admin.cot-orders.php:408
+msgid "Total"
+msgstr "合計"
+
+#: setting/modules/mywp.setting.admin.cot-orders.php:414
+msgid "Actions"
+msgstr "操作"
+
+#: setting/modules/mywp.setting.admin.cot-orders.php:419
+msgid "Origin"
+msgstr "オリジン"
+
+#: setting/modules/mywp.setting.admin.cot-orders.php:440
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: setting/modules/mywp.setting.admin.cot-orders.php:482
+msgid "ID"
+msgstr "ID"
 
 #. Description of the plugin/theme
 msgid "My WP Add-on WooCommerce is customize for WooCommerce on My WP."

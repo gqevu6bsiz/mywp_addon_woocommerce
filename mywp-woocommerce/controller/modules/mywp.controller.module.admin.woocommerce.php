@@ -40,10 +40,6 @@ final class MywpControllerModuleWooCommerce extends MywpControllerAbstractModule
 
     add_filter( 'mywp_setting_get_latest_post_args_shop_order' , array( __CLASS__ , 'mywp_setting_get_latest_post_args_shop_order' ) );
 
-    add_filter( 'mywp_setting_admin_posts_get_available_list_columns_product' , array( __CLASS__ , 'mywp_setting_admin_posts_get_available_list_columns_product' ) );
-
-    add_filter( 'mywp_setting_admin_posts_get_available_list_columns_shop_order' , array( __CLASS__ , 'mywp_setting_admin_posts_get_available_list_columns_shop_order' ) );
-
     add_filter( 'mywp_setting_admin_sidebar_get_default_sidebar_items' , array( __CLASS__ , 'mywp_setting_admin_sidebar_get_default_sidebar_items' ) , 10 , 2 );
 
     add_filter( 'mywp_controller_admin_sidebar_get_sidebar_item_added_classes_found_current_item_ids' , array( __CLASS__ , 'mywp_controller_admin_sidebar_get_sidebar_item_added_classes_found_current_item_ids' ) , 10 , 5 );
@@ -78,7 +74,7 @@ final class MywpControllerModuleWooCommerce extends MywpControllerAbstractModule
 
   }
 
-  public static function do_shortcode_order_count( $atts = array() , $content = false , $tag ) {
+  public static function do_shortcode_order_count( $atts = array() , $content = false , $tag = false ) {
 
     if( ! current_user_can( 'manage_woocommerce' ) ) {
 
@@ -126,108 +122,6 @@ final class MywpControllerModuleWooCommerce extends MywpControllerAbstractModule
     $args['post_status'] = array( 'wc-processing', 'wc-completed' );
 
     return $args;
-
-  }
-
-  public static function mywp_setting_admin_posts_get_available_list_columns_product( $available_list_columns ) {
-
-    if( isset( $available_list_columns['other']['columns']['thumb'] ) ) {
-
-      $available_list_columns['other']['columns']['thumb']['width'] = '52px';
-
-    }
-
-    if( isset( $available_list_columns['other']['columns']['name'] ) ) {
-
-      $available_list_columns['other']['columns']['name']['width'] = '22%';
-
-    }
-
-    if( isset( $available_list_columns['other']['columns']['sku'] ) ) {
-
-      $available_list_columns['other']['columns']['sku']['width'] = '10%';
-
-    }
-
-    if( isset( $available_list_columns['other']['columns']['is_in_stock'] ) ) {
-
-      $available_list_columns['other']['columns']['is_in_stock']['width'] = '12ch';
-
-    }
-
-    if( isset( $available_list_columns['other']['columns']['price'] ) ) {
-
-      $available_list_columns['other']['columns']['price']['width'] = '10ch';
-
-    }
-
-    if( isset( $available_list_columns['taxonomies']['columns']['product_cat'] ) ) {
-
-      $available_list_columns['taxonomies']['columns']['product_cat']['width'] = '11%';
-
-    }
-
-    if( isset( $available_list_columns['taxonomies']['columns']['product_tag'] ) ) {
-
-      $available_list_columns['taxonomies']['columns']['product_tag']['width'] = '11%';
-
-    }
-
-    if( isset( $available_list_columns['other']['columns']['featured'] ) ) {
-
-      $available_list_columns['other']['columns']['featured']['width'] = '48px';
-
-    }
-
-    return $available_list_columns;
-
-  }
-
-  public static function mywp_setting_admin_posts_get_available_list_columns_shop_order( $available_list_columns ) {
-
-    if( isset( $available_list_columns['other']['columns']['order_number'] ) ) {
-
-      $available_list_columns['other']['columns']['order_number']['width'] = '20ch';
-
-    }
-
-    if( isset( $available_list_columns['other']['columns']['order_date'] ) ) {
-
-      $available_list_columns['other']['columns']['order_date']['width'] = '10ch';
-
-    }
-
-    if( isset( $available_list_columns['other']['columns']['order_status'] ) ) {
-
-      $available_list_columns['other']['columns']['order_status']['width'] = '14ch';
-
-    }
-
-    if( isset( $available_list_columns['other']['columns']['billing_address'] ) ) {
-
-      $available_list_columns['other']['columns']['billing_address']['width'] = '20ch';
-
-    }
-
-    if( isset( $available_list_columns['other']['columns']['shipping_address'] ) ) {
-
-      $available_list_columns['other']['columns']['shipping_address']['width'] = '20ch';
-
-    }
-
-    if( isset( $available_list_columns['other']['columns']['order_total'] ) ) {
-
-      $available_list_columns['other']['columns']['order_total']['width'] = '8ch';
-
-    }
-
-    if( isset( $available_list_columns['other']['columns']['wc_actions'] ) ) {
-
-      $available_list_columns['other']['columns']['wc_actions']['width'] = '12ch';
-
-    }
-
-    return $available_list_columns;
 
   }
 

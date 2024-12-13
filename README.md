@@ -1,7 +1,24 @@
 # MyWP Add-on WooCommerce
-My WP Add-on WooCommerce is customize and develop for WooCommerce on My WP.
 
-![My WP](https://img.shields.io/badge/My%20WP-Ver%201.20-green) ![WooCommerce](https://img.shields.io/badge/WooCommerce-Ver%206.8-green)
+![My WP](https://img.shields.io/badge/My%20WP-Ver%201.24-green) ![WooCommerce](https://img.shields.io/badge/WooCommerce-Ver%209.4-green)
+
+My WP Add-on WooCommerce is customize and develop for WooCommerce.
+
+<p align="center">
+  <img src="https://mywpcustomize.com/wp-content/uploads/2024/12/mywp-woocommerce-image1.png" alt="My WP Add-on WooCommerce setting screen"/>
+</p>
+
+<p align="center">
+  <img src="https://mywpcustomize.com/wp-content/uploads/2024/12/mywp-woocommerce-image2.png" alt="My WP Add-on WooCommerce Orders screen"/>
+</p>
+
+## Description
+My WP Add-on WooCommerce is require My WP Customize WordPress plugin.
+
+* [My WP Customize website](https://mywpcustomize.com/)
+* [WordPress.org](https://wordpress.org/plugins/my-wp/)
+
+## Documentation
 
 You can find the documentation at
 [My WP Add-on WooCommerce](https://mywpcustomize.com/add_ons/my-wp-add-on-woocommerce/).

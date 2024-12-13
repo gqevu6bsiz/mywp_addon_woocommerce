@@ -3,13 +3,13 @@
 Plugin Name: My WP Add-on WooCommerce
 Plugin URI: https://mywpcustomize.com/add_ons/my-wp-add-on-woocommerce/
 Description: My WP Add-on WooCommerce is customize for WooCommerce on My WP.
-Version: 1.1.0
-Author: gqevu6bsiz
-Author URI: http://gqevu6bsiz.chicappa.jp/
+Version: 1.2.0
+Author: My WP Customize
+Author URI: https://mywpcustomize.com/
 Text Domain: mywp-woocommerce
 Domain Path: /languages
-My WP Test working: 1.20
-WooCommerce Test working: 6.8.2
+My WP Test working: 1.24
+WooCommerce Test working: 9.4.3
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,26 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'MywpWooCommerce' ) ) :
 
 final class MywpWooCommerce {
-
-  private static $instance;
-
-  private function __construct() {}
-
-  public static function get_instance() {
-
-    if ( !isset( self::$instance ) ) {
-
-      self::$instance = new self();
-
-    }
-
-    return self::$instance;
-
-  }
-
-  private function __clone() {}
-
-  private function __wakeup() {}
 
   public static function init() {
 
@@ -52,7 +32,7 @@ final class MywpWooCommerce {
   private static function define_constants() {
 
     define( 'MYWP_WOOCOMMERCE_NAME' , 'My WP Add-On WooCommerce' );
-    define( 'MYWP_WOOCOMMERCE_VERSION' , '1.1.0' );
+    define( 'MYWP_WOOCOMMERCE_VERSION' , '1.2.0' );
     define( 'MYWP_WOOCOMMERCE_PLUGIN_FILE' , __FILE__ );
     define( 'MYWP_WOOCOMMERCE_PLUGIN_BASENAME' , plugin_basename( MYWP_WOOCOMMERCE_PLUGIN_FILE ) );
     define( 'MYWP_WOOCOMMERCE_PLUGIN_DIRNAME' , dirname( MYWP_WOOCOMMERCE_PLUGIN_BASENAME ) );
@@ -81,6 +61,8 @@ final class MywpWooCommerce {
 
     add_filter( 'mywp_controller_plugins_loaded_include_modules' , array( __CLASS__ , 'mywp_controller_plugins_loaded_include_modules' ) );
 
+    add_filter( 'mywp_setting_plugins_loaded_include_modules' , array( __CLASS__ , 'mywp_setting_plugins_loaded_include_modules' ) );
+
     add_filter( 'mywp_developer_plugins_loaded_include_modules' , array( __CLASS__ , 'mywp_developer_plugins_loaded_include_modules' ) );
 
     add_filter( 'mywp_debug_types' , array( __CLASS__ , 'mywp_debug_types' ) );
@@ -97,9 +79,24 @@ final class MywpWooCommerce {
 
     $dir = MYWP_WOOCOMMERCE_PLUGIN_PATH . 'controller/modules/';
 
-    $includes['woocommerce_main_general'] = $dir . 'mywp.controller.module.main.general.php';
-    $includes['woocommerce_updater']      = $dir . 'mywp.controller.module.updater.php';
-    $includes['woocommerce_controller']   = $dir . 'mywp.controller.module.woocommerce.php';
+    $includes['woocommerce_main_general']              = $dir . 'mywp.controller.module.main.general.php';
+    $includes['woocommerce_updater']                   = $dir . 'mywp.controller.module.updater.php';
+    $includes['woocommerce_admin_posts']               = $dir . 'mywp.controller.module.admin.posts.php';
+    $includes['woocommerce_admin_products']            = $dir . 'mywp.controller.module.admin.products.php';
+    $includes['woocommerce_admin_regist_list_columns'] = $dir . 'mywp.controller.module.admin.cot-orders.php';
+    $includes['woocommerce_admin_cot_orders']          = $dir . 'mywp.controller.module.admin.regist.list-columns.php';
+    $includes['woocommerce_admin_shop_orders']         = $dir . 'mywp.controller.module.admin.shop-orders.php';
+    $includes['woocommerce_admin_woocommerce']         = $dir . 'mywp.controller.module.admin.woocommerce.php';
+
+    return $includes;
+
+  }
+
+  public static function mywp_setting_plugins_loaded_include_modules( $includes ) {
+
+    $dir = MYWP_WOOCOMMERCE_PLUGIN_PATH . 'setting/modules/';
+
+    $includes['woocommerce_admin_cot_orders'] = $dir . 'mywp.setting.admin.cot-orders.php';
 
     return $includes;
 
